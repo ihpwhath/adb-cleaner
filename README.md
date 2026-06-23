@@ -6,7 +6,7 @@
 ![Platform](https://img.shields.io/badge/Platform-Android-green?style=for-the-badge)
 ![Requires](https://img.shields.io/badge/Requires-Root-red?style=for-the-badge)
 
-**Android 手机深度清理助手 - OpenClaw Agent Skill**
+**Android 手机深度清理助手**
 
 通过 ADB + Root 权限深度清理安卓手机垃圾文件
 
@@ -14,7 +14,25 @@
 
 ---
 
-## 🤖 这是什么？
+## 一键安装
+
+在 OpenClaw 中说：
+
+`
+安装这个 skill：https://github.com/ihpwhath/adb-cleaner
+`
+
+或者：
+
+`
+帮我安装 adb-cleaner skill
+`
+
+OpenClaw 会自动安装此 skill。
+
+---
+
+## 这是什么？
 
 这是一个 **OpenClaw Skill**，用于扩展 OpenClaw Agent 的能力。
 
@@ -24,53 +42,21 @@
 - "手机满了"
 - "ADB清理"
 - "深度清理手机"
+- "手机垃圾清理"
 
 ---
 
-## 📦 文件结构
+## 功能特性
 
-`
-adb-cleaner/
-├── SKILL.md                           # Skill 主文档（Agent 读取）
-├── scripts/
-│   ├── scan.py                        # 扫描脚本
-│   └── clean.py                       # 清理脚本
-└── references/
-    └── android_junk_types.md          # 垃圾类型参考文档
-`
+- ✅ **全面扫描** - 应用缓存、系统日志、应用日志、下载残留、临时文件、空目录
+- ✅ **三级分类** - 可自动清理 / 需人工判断 / 谨慎清理
+- ✅ **安全清理** - 清理前确认、分步执行、保留重要文件
+- ✅ **详细报告** - 生成 Markdown 清理报告
+- ✅ **零依赖** - 纯 Python 3 标准库
 
 ---
 
-## 🚀 使用方法
-
-### 作为 OpenClaw Skill 使用
-
-1. **安装到 OpenClaw**：
-   \\\ash
-   # 复制到 OpenClaw skills 目录
-   cp -r adb-cleaner ~/.qclaw/skills/
-   \\\
-
-2. **触发使用**：
-   - 直接在 OpenClaw 对话中说："帮我清理手机"
-   - Agent 会自动加载此 skill 并执行清理
-
-### 作为独立工具使用
-
-\\\ash
-# 扫描手机
-python scripts/scan.py
-
-# 清理手机（模拟）
-python scripts/clean.py --dry-run
-
-# 实际清理
-python scripts/clean.py --work-dir ./output
-\\\
-
----
-
-## ⚙️ 前置要求
+## 前置要求
 
 - ✅ **ADB 工具** - 已安装 adb 并在 PATH 中
 - ✅ **USB 调试** - 手机已开启 USB 调试模式
@@ -79,9 +65,41 @@ python scripts/clean.py --work-dir ./output
 
 ---
 
-## 🗂️ 支持的垃圾类型
+## 使用方法
 
-### 🟢 可自动清理（安全）
+### 方法一：通过 OpenClaw 使用（推荐）
+
+安装后，直接对 OpenClaw 说：
+
+`
+帮我清理手机
+`
+
+Agent 会自动：
+1. 检查 ADB 连接和 Root 权限
+2. 扫描手机存储空间
+3. 列出可清理的垃圾文件
+4. 征得你同意后执行清理
+5. 生成清理报告
+
+### 方法二：作为独立工具使用
+
+`ash
+# 扫描手机
+python scripts/scan.py
+
+# 清理手机（模拟，不实际执行）
+python scripts/clean.py --dry-run
+
+# 实际清理
+python scripts/clean.py --work-dir ./output
+`
+
+---
+
+## 支持的垃圾类型
+
+### 可自动清理（安全）
 
 | 类型 | 位置 | 典型大小 |
 |------|------|----------|
@@ -92,12 +110,12 @@ python scripts/clean.py --work-dir ./output
 | 临时文件 | *.tmp, *.temp, *.part | 10-50 MB |
 | 空目录 | - | - |
 
-### 🟡 需人工判断
+### 需人工判断
 
 - 云盘缓存（可能包含下载的文件）
-- 微信/QQ缓存（建议应用内清理）
+- 微信/QQ 缓存（建议应用内清理）
 
-### 🔴 谨慎清理（建议保留）
+### 建议保留
 
 - 备份镜像（刷机备份）
 - 通话录音
@@ -105,19 +123,21 @@ python scripts/clean.py --work-dir ./output
 
 ---
 
-## 📖 SKILL.md 说明
+## 文件结构
 
-SKILL.md 是此 skill 的核心文件，定义了：
-
-1. **触发条件** - 什么关键词会触发此 skill
-2. **执行流程** - Agent 执行清理的完整流程
-3. **扫描命令** - 各类垃圾文件的扫描方法
-4. **清理命令** - 各类垃圾文件的清理方法
-5. **安全规则** - 清理时的注意事项
+`
+adb-cleaner/
+├── SKILL.md                      # Skill 主文档（Agent 读取）
+├── scripts/
+│   ├── scan.py                   # 扫描脚本
+│   └── clean.py                  # 清理脚本
+└── references/
+    └── android_junk_types.md     # 垃圾类型参考
+`
 
 ---
 
-## 🛡️ 安全机制
+## 安全机制
 
 - ✅ **只读扫描** - 扫描阶段不修改任何文件
 - ✅ **分步确认** - 清理前展示详细计划
@@ -126,23 +146,16 @@ SKILL.md 是此 skill 的核心文件，定义了：
 
 ---
 
-## 📄 许可证
+## 许可证
 
-MIT License - 详见 [LICENSE](LICENSE)
-
----
-
-## 🙏 致谢
-
-- 灵感来源于 [storage-analyzer](https://github.com/openclaw/skills/tree/main/storage-analyzer)
-- 为 [OpenClaw](https://github.com/openclaw/openclaw) 设计
+MIT License
 
 ---
 
 <div align="center">
 
-**如果这个 skill 对你有帮助，请给一个 ⭐️ Star！**
+**如果这个 skill 对你有帮助，请给一个 Star！**
 
-Made with ❤️ for OpenClaw Agent
+Made for OpenClaw Agent
 
 </div>
