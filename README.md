@@ -1,16 +1,6 @@
 # ADB Cleaner - OpenClaw Skill
 
-<div align="center">
-
-![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Android-green?style=for-the-badge)
-![Requires](https://img.shields.io/badge/Requires-Root-red?style=for-the-badge)
-
-**Android 手机深度清理助手**
-
-通过 ADB + Root 权限深度清理安卓手机垃圾文件
-
-</div>
+Android 手机深度清理助手，通过 ADB + Root 权限深度清理安卓手机垃圾文件。
 
 ---
 
@@ -34,34 +24,34 @@ OpenClaw 会自动安装此 skill。
 
 ## 这是什么？
 
-这是一个 **OpenClaw Skill**，用于扩展 OpenClaw Agent 的能力。
+这是一个 OpenClaw Skill，用于扩展 OpenClaw Agent 的能力。
 
 当用户说以下关键词时，OpenClaw 会自动加载此 skill：
-- "清理手机"
-- "手机空间不够"
-- "手机满了"
-- "ADB清理"
-- "深度清理手机"
-- "手机垃圾清理"
+- 清理手机
+- 手机空间不够
+- 手机满了
+- ADB清理
+- 深度清理手机
+- 手机垃圾清理
 
 ---
 
 ## 功能特性
 
-- ✅ **全面扫描** - 应用缓存、系统日志、应用日志、下载残留、临时文件、空目录
-- ✅ **三级分类** - 可自动清理 / 需人工判断 / 谨慎清理
-- ✅ **安全清理** - 清理前确认、分步执行、保留重要文件
-- ✅ **详细报告** - 生成 Markdown 清理报告
-- ✅ **零依赖** - 纯 Python 3 标准库
+- 全面扫描 - 应用缓存、系统日志、应用日志、下载残留、临时文件、空目录
+- 三级分类 - 可自动清理 / 需人工判断 / 谨慎清理
+- 安全清理 - 清理前确认、分步执行、保留重要文件
+- 详细报告 - 生成 Markdown 清理报告
+- 零依赖 - 纯 Python 3 标准库
 
 ---
 
 ## 前置要求
 
-- ✅ **ADB 工具** - 已安装 adb 并在 PATH 中
-- ✅ **USB 调试** - 手机已开启 USB 调试模式
-- ✅ **Root 权限** - 手机已 root（KernelSu/Magisk）
-- ✅ **USB 连接** - 手机已通过 USB 连接电脑
+- ADB 工具 - 已安装 adb 并在 PATH 中
+- USB 调试 - 手机已开启 USB 调试模式
+- Root 权限 - 手机已 root（KernelSu/Magisk）
+- USB 连接 - 手机已通过 USB 连接电脑
 
 ---
 
@@ -84,14 +74,21 @@ Agent 会自动：
 
 ### 方法二：作为独立工具使用
 
-`ash
-# 扫描手机
+扫描手机：
+
+`
 python scripts/scan.py
+`
 
-# 清理手机（模拟，不实际执行）
+清理手机（模拟，不实际执行）：
+
+`
 python scripts/clean.py --dry-run
+`
 
-# 实际清理
+实际清理：
+
+`
 python scripts/clean.py --work-dir ./output
 `
 
@@ -101,14 +98,12 @@ python scripts/clean.py --work-dir ./output
 
 ### 可自动清理（安全）
 
-| 类型 | 位置 | 典型大小 |
-|------|------|----------|
-| 应用缓存 | /data/data/*/cache | 1-3 GB |
-| 系统日志 | /data/anr, /data/tombstones | 50-100 MB |
-| 应用日志 | debug_log, *.log, *.xlog | 100-300 MB |
-| 下载残留 | /sdcard/Download/.pending-* | 100-500 MB |
-| 临时文件 | *.tmp, *.temp, *.part | 10-50 MB |
-| 空目录 | - | - |
+- 应用缓存：/data/data/*/cache（1-3 GB）
+- 系统日志：/data/anr, /data/tombstones（50-100 MB）
+- 应用日志：debug_log, *.log, *.xlog（100-300 MB）
+- 下载残留：/sdcard/Download/.pending-*（100-500 MB）
+- 临时文件：*.tmp, *.temp, *.part（10-50 MB）
+- 空目录
 
 ### 需人工判断
 
@@ -139,10 +134,10 @@ adb-cleaner/
 
 ## 安全机制
 
-- ✅ **只读扫描** - 扫描阶段不修改任何文件
-- ✅ **分步确认** - 清理前展示详细计划
-- ✅ **保留重要文件** - 默认保留备份镜像、通话录音
-- ✅ **生成报告** - 清理后生成详细的 Markdown 报告
+- 只读扫描 - 扫描阶段不修改任何文件
+- 分步确认 - 清理前展示详细计划
+- 保留重要文件 - 默认保留备份镜像、通话录音
+- 生成报告 - 清理后生成详细的 Markdown 报告
 
 ---
 
@@ -152,10 +147,6 @@ MIT License
 
 ---
 
-<div align="center">
-
-**如果这个 skill 对你有帮助，请给一个 Star！**
+如果这个 skill 对你有帮助，请给一个 Star！
 
 Made for OpenClaw Agent
-
-</div>
